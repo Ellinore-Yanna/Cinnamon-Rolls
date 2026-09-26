@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bakes by El · Cinnamon rolls delivered in West Fargo</title>
+<meta name="description" content="Small-batch cinnamon rolls, made to order and delivered Saturday mornings within 20 miles of West Fargo, ND.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 4C9.4 4 4 9.4 4 16s5.4 12 12 12 9-4 9-8-3.6-7-7-7-6 2.5-6 5.5 2 4.5 4 4.5' fill='none' stroke='%23C2376A' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="home">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4C9.4 4 4 9.4 4 16s5.4 12 12 12 9-4 9-8-3.6-7-7-7-6 2.5-6 5.5 2 4.5 4 4.5" stroke="#C2376A" stroke-width="2.5" stroke-linecap="round"/></svg>
+      Bakes by El
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#flavors">Flavors</a>
+      <a href="#how">How It Works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-small" href="order.html">Order Now</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <span data-status class="pill pill-open">Ordering is open</span>
+        <h1>Fresh cinnamon rolls, <em>delivered</em> Saturday morning.</h1>
+        <p>Small-batch and made to order. Order Sunday through Thursday evening, and rolls come to your door Saturday between 7 and 11 AM.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="order.html">Order This Week</a>
+          <a class="btn btn-outline" href="#how">How It Works</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <span class="dot-blue"></span>
+        <span class="dot-green"></span>
+        <img src="images/original.webp" alt="A pan of cinnamon rolls with cream cheese icing">
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="section section-blue">
+    <div class="wrap">
+      <div class="section-head"><h2>How ordering works</h2></div>
+      <div class="steps">
+        <div class="step"><span class="step-num">01</span><h3>Order Sun – Thu</h3><p>Ordering opens Sunday and closes Thursday at <span data-close-label>8 PM</span>. Pick your flavors and how many.</p></div>
+        <div class="step"><span class="step-num">02</span><h3>Pay with Venmo</h3><p>One tap opens Venmo with your total already filled in.</p></div>
+        <div class="step"><span class="step-num">03</span><h3>We bake fresh</h3><p>Every roll is made to order in small batches.</p></div>
+        <div class="step"><span class="step-num">04</span><h3>Saturday delivery</h3><p>Delivered to your door Saturday between 7 and 11 AM.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="flavors" class="section">
+    <div class="wrap">
+      <div class="section-head"><h2>This week's flavors</h2><span>Original $3 · Gourmet $4</span></div>
+      <div id="flavor-list" class="flavors"></div>
+    </div>
+  </section>
+
+  <section id="past" class="section section-green">
+    <div class="wrap">
+      <div class="section-head"><h2>Past &amp; future flavors</h2><span>Gourmet flavors we've baked and ones on the way.</span></div>
+      <div id="gallery" class="gallery"></div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="wrap">
+      <div class="section-head"><h2>Questions</h2></div>
+      <div class="faq">
+        <div class="faq-item"><h3>When can I order?</h3><p>Sunday through Thursday at <span data-close-label>8 PM</span>. Ordering closes automatically after that and reopens Sunday.</p></div>
+        <div class="faq-item"><h3>When will my rolls arrive?</h3><p>Saturday between 7 and 11 AM. We can't promise an exact time within that window.</p></div>
+        <div class="faq-item"><h3>Where do you deliver?</h3><p>Anywhere within 20 miles of West Fargo, ND.</p></div>
+        <div class="faq-item"><h3>How do I pay?</h3><p>With Venmo to @ellinelson1 when you place your order. Your order is confirmed once the payment comes through.</p></div>
+        <div class="faq-item"><h3>What if I'm not home?</h3><p>No problem! Your cinnamon rolls will be left on your front step. Add delivery notes when you order if there's a better spot.</p></div>
+        <div class="faq-item"><h3>How do I keep and reheat them?</h3><p>They stay fresh for up to 2 days after delivery. Keep them in the fridge since the icing has cream cheese. Warm one in the microwave for 15–30 seconds.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="notify">
+    <div class="wrap">
+      <div>
+        <h2>Never miss an order window</h2>
+        <p>Get an email each Sunday when ordering opens, with that week's flavors.</p>
+      </div>
+      <div>
+        <form id="notify-form" class="notify-form" novalidate>
+          <input type="email" name="email" required placeholder="you@email.com" aria-label="Email address" autocomplete="email">
+          <button type="submit">Notify Me</button>
+        </form>
+        <p class="form-msg" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="wrap">
+      <div class="contact-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#9E2754" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/></svg>
+      </div>
+      <div>
+        <h2>Contact Elli</h2>
+        <p>Any questions or concerns? Send me a text.</p>
+        <span class="phone">(701) 306-9643</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-info">
+        <strong>Bakes by El</strong>
+        <span>Delivery only · Saturdays 7–11 AM · West Fargo, ND</span>
+        <span>Venmo @ellinelson1</span>
+      </div>
+      <div class="dots" aria-hidden="true"><span style="background:#F9D0DE"></span><span style="background:#D8ECFA"></span><span style="background:#D5F0E3"></span></div>
+    </div>
+    <p class="disclaimer">This product is made in a home kitchen that is not inspected by the state or local health department. Bakes by El products are not certified, labeled, licensed, packaged, regulated, or inspected.</p>
+  </div>
+</footer>
+
+<div id="signup-modal" class="modal-backdrop hidden">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <div class="modal-top">
+      <span class="c1"></span><span class="c2"></span>
+      <svg width="64" height="64" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4C9.4 4 4 9.4 4 16s5.4 12 12 12 9-4 9-8-3.6-7-7-7-6 2.5-6 5.5 2 4.5 4 4.5" stroke="#C2376A" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <button type="button" class="modal-close" data-close aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B2A3F" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h2 id="popup-title">Want first dibs on <span class="accent-em">fresh rolls?</span></h2>
+      <p>We'll email you each Sunday when ordering opens, with that week's flavors. Just one email a week.</p>
+      <form id="popup-form" novalidate style="display:flex;flex-direction:column;gap:14px">
+        <div class="field">
+          <label for="popup-email">Email address</label>
+          <input id="popup-email" type="email" name="email" required placeholder="you@email.com" autocomplete="email">
+        </div>
+        <button type="submit" class="btn btn-primary">Notify me</button>
+      </form>
+      <p class="form-msg" role="status" style="font-size:14px;color:#2E7A56"></p>
+      <button type="button" class="link-btn" data-close>No thanks, just looking</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
