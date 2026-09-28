@@ -52,4 +52,4 @@ Then commit and push. The site updates in about a minute.
 
 ## Paying with Venmo
 
-On a phone, **Pay with Venmo** opens the Venmo app to @ellinelson1 with the amount and a note like "Bakes by El order EL-4K9QZ". On a computer, it opens Venmo's website. The site can't see whether someone actually paid: match Venmo payments to the **Order #** column and mark **Paid?** in the sheet.
+On a phone, **Pay with Venmo** opens the Venmo app to @ellinelson1 with the amount and a note like "Oct 3rd Rolls" (that week's delivery date). On a computer, it opens Venmo's website. The site can't see whether someone actually paid: match Venmo payments to the **Name** column and mark **Paid?** in the sheet.

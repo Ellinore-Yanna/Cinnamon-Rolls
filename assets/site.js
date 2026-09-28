@@ -37,6 +37,14 @@
     return dt.toLocaleDateString('en-US', { timeZone: 'UTC', weekday: 'long', month: 'long', day: 'numeric' });
   }
 
+  // "Oct 3rd" style date, used in the Venmo note.
+  function shortDate(now, addDays) {
+    var dt = new Date(Date.UTC(now.y, now.m - 1, now.d + addDays));
+    var d = dt.getUTCDate();
+    var suffix = (d % 100 >= 11 && d % 100 <= 13) ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' }[d % 10] || 'th');
+    return dt.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short' }) + ' ' + d + suffix;
+  }
+
   function orderWindow() {
     var now = centralNow();
     var open = now.day < B.closeDay || (now.day === B.closeDay && now.secs < B.closeHour * 3600);
@@ -44,6 +52,7 @@
     return {
       open: open,
       deliveryDate: dateLabel(now, 6 - now.day),
+      venmoNote: shortDate(now, 6 - now.day) + ' Rolls',
       reopenDate: dateLabel(now, (7 - now.day) % 7 || 7),
       secondsToOpen: untilSunday
     };
@@ -64,9 +73,8 @@
   }
 
   function venmoLinks(order) {
-    var note = B.name + ' order ' + order.id;
     var q = 'txn=pay&recipients=' + encodeURIComponent(B.venmoUser) +
-      '&amount=' + order.total.toFixed(2) + '&note=' + encodeURIComponent(note);
+      '&amount=' + order.total.toFixed(2) + '&note=' + encodeURIComponent(order.venmoNote);
     return {
       app: 'venmo://paycharge?' + q,
       web: 'https://account.venmo.com/pay?' + q
@@ -240,7 +248,6 @@
       var data = new FormData(form);
       var order = {
         type: 'order',
-        id: 'EL-' + Date.now().toString(36).slice(-5).toUpperCase(),
         placedAt: new Date().toISOString(),
         name: data.get('name').trim(),
         phone: data.get('phone').trim(),
@@ -253,7 +260,8 @@
         items: t.items,
         count: t.count,
         total: t.total,
-        deliveryDate: w.deliveryDate
+        deliveryDate: w.deliveryDate,
+        venmoNote: w.venmoNote
       };
       store('bbe-last-order', order);
       send(order);
@@ -273,7 +281,7 @@
       return;
     }
     $('#c-name').textContent = o.name.split(' ')[0];
-    document.querySelectorAll('.c-id').forEach(function (el) { el.textContent = o.id; });
+    $('#c-note').textContent = o.venmoNote;
     $('#c-email').textContent = o.email;
     $('#c-date').textContent = o.deliveryDate;
     $('#c-address').innerHTML = esc(o.street) + (o.apt ? ', ' + esc(o.apt) : '') + '<br>' + esc(o.city) + ' ' + esc(o.zip);

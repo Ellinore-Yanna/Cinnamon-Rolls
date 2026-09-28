@@ -86,35 +86,36 @@ function order_(d) {
   var address = [d.street, d.apt].filter(String).join(', ') + ', ' + d.city + ' ' + d.zip;
   var summary = lines.map(function (l) { return l.qty + ' × ' + l.name; }).join(', ');
 
-  var sh = sheet_('Orders', ['Placed', 'Order #', 'Name', 'Phone', 'Email', 'Address', 'Delivery notes',
+  var note = String(d.venmoNote || (d.deliveryDate + ' Rolls')).slice(0, 60);
+  var sh = sheet_('Orders', ['Placed', 'Name', 'Phone', 'Email', 'Address', 'Delivery notes',
     'Rolls', 'Count', 'Total', 'Delivery date', 'Paid?', 'Delivered?']);
-  sh.appendRow([new Date(), d.id, d.name, d.phone, d.email, address, d.notes || '',
+  sh.appendRow([new Date(), d.name, d.phone, d.email, address, d.notes || '',
     summary, count, total, d.deliveryDate, '', '']);
 
   // Email the customer
   MailApp.sendEmail({
     to: d.email,
-    subject: 'Your cinnamon rolls are ordered! (Order ' + d.id + ')',
-    htmlBody: confirmationEmail_(d, lines, total, count, address),
+    subject: 'Your cinnamon rolls are ordered!',
+    htmlBody: confirmationEmail_(d, lines, total, count, address, note),
     name: BAKERY
   });
 
   // Email Elli
   MailApp.sendEmail({
     to: Session.getEffectiveUser().getEmail(),
-    subject: 'New order ' + d.id + ' — ' + d.name + ' — $' + total.toFixed(2),
+    subject: 'New order — ' + d.name + ' — $' + total.toFixed(2),
     body: d.name + ' ordered ' + summary + ' ($' + total.toFixed(2) + ').\n\n' +
       'Deliver ' + d.deliveryDate + ' to: ' + address + '\n' +
       'Phone: ' + d.phone + '\nEmail: ' + d.email + '\nNotes: ' + (d.notes || '—') + '\n\n' +
-      'Check Venmo for a payment with the note "' + BAKERY + ' order ' + d.id + '".'
+      'Check Venmo for a payment from ' + d.name + ' with the note "' + note + '".'
   });
 
-  return { ok: true, id: d.id, total: total };
+  return { ok: true, total: total };
 }
 
-function confirmationEmail_(d, lines, total, count, address) {
+function confirmationEmail_(d, lines, total, count, address, note) {
   var venmoLink = 'https://account.venmo.com/pay?txn=pay&recipients=' + VENMO +
-    '&amount=' + total.toFixed(2) + '&note=' + encodeURIComponent(BAKERY + ' order ' + d.id);
+    '&amount=' + total.toFixed(2) + '&note=' + encodeURIComponent(note);
   var rows = lines.map(function (l) {
     return '<tr><td style="padding:4px 0">' + l.qty + ' × ' + esc_(l.name) + '</td>' +
       '<td style="padding:4px 0;text-align:right">$' + (l.qty * l.price).toFixed(2) + '</td></tr>';
@@ -125,7 +126,7 @@ function confirmationEmail_(d, lines, total, count, address) {
     '<div style="background:#FCE4EC;padding:22px 28px;font-family:Georgia,serif;font-size:20px;font-weight:bold">' + BAKERY + '</div>' +
     '<div style="padding:28px">' +
     '<h1 style="font-family:Georgia,serif;font-size:26px;margin:0 0 10px">Hi ' + esc_(d.name.split(' ')[0]) + ', your rolls are <i style="color:#C2376A">on the list!</i></h1>' +
-    '<p style="color:#6B5570;margin:0 0 20px">Thanks for ordering. Here\'s everything you need to know about order ' + esc_(d.id) + '.</p>' +
+    '<p style="color:#6B5570;margin:0 0 20px">Thanks for ordering. Here\'s everything you need to know about your order.</p>' +
     '<div style="background:#E6F3FC;border-radius:14px;padding:16px 18px;margin-bottom:18px">' +
     '<div style="font-size:12px;font-weight:bold;letter-spacing:.06em;text-transform:uppercase;color:#1F4E73">Delivery</div>' +
     '<div style="font-weight:bold;margin:6px 0">' + esc_(d.deliveryDate) + ' · between 7 and 11 AM</div>' +
@@ -138,7 +139,7 @@ function confirmationEmail_(d, lines, total, count, address) {
     '<td style="border-top:1px dashed #E3D3E6;padding-top:10px;text-align:right;font-weight:bold;font-size:20px">$' + total.toFixed(2) + '</td></tr></table>' +
     '<div style="background:#FCE4EC;border-radius:14px;padding:16px 18px;margin-top:18px">' +
     '<div style="font-size:12px;font-weight:bold;letter-spacing:.06em;text-transform:uppercase;color:#7A1F44">Payment</div>' +
-    '<p style="margin:6px 0 12px">Pay <b>$' + total.toFixed(2) + '</b> on Venmo to <b>@' + VENMO + '</b> with the note "' + BAKERY + ' order ' + esc_(d.id) + '". If you already paid, you\'re all set!</p>' +
+    '<p style="margin:6px 0 12px">Pay <b>$' + total.toFixed(2) + '</b> on Venmo to <b>@' + VENMO + '</b> with the note "' + esc_(note) + '". If you already paid, you\'re all set!</p>' +
     '<a href="' + venmoLink + '" style="display:inline-block;background:#0074DE;color:#fff;text-decoration:none;font-weight:bold;padding:12px 22px;border-radius:999px">Pay with Venmo</a>' +
     '</div>' +
     '<p style="color:#6B5570;margin:18px 0 0">Keep them in the fridge and enjoy within 2 days. Warm one in the microwave for 15–30 seconds.</p>' +
