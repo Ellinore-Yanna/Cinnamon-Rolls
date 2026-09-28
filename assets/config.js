@@ -28,7 +28,7 @@ window.BAKERY = {
       price: 3,
       gourmet: false,
       desc: 'Soft dough, brown-sugar cinnamon filling, cream cheese icing.',
-      ingredients: 'Flour, butter, brown sugar, cinnamon, milk, eggs, powdered sugar, cream cheese, vanilla',
+      ingredients: 'Flour, butter, brown sugar, cinnamon, milk, eggs, powdered sugar, cream cheese, yeast, sugar, vanilla',
       allergens: 'Wheat, milk, eggs',
       img: 'images/original.webp'
     },
