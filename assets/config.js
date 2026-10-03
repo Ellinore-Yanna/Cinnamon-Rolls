@@ -33,6 +33,40 @@ window.BAKERY = {
       img: 'images/original.webp'
     },
     {
+      id: 'peach-cobbler',
+      name: 'Peach Cobbler',
+      price: 4,
+      gourmet: true,
+      desc: 'Our original roll with sweet cinnamon peaches and a buttery cobbler crumble.',
+      ingredients: 'Everything in the original, plus peaches and cornstarch',
+      allergens: 'Wheat, milk, eggs',
+      img: 'images/peach-cobbler.webp'
+    },
+    {
+      id: 'salted-caramel',
+      name: 'Salted Caramel',
+      price: 4,
+      gourmet: true,
+      desc: 'Our original roll drizzled with homemade caramel and a pinch of sea salt.',
+      ingredients: 'Everything in the original, plus caramel (sugar, butter, heavy cream) and sea salt',
+      allergens: 'Wheat, milk, eggs',
+      img: 'images/salted-caramel.webp'
+    }
+  ],
+
+  // "Past & future flavors" section on the homepage.
+  pastAndFuture: [
+    { name: 'Apple Cinnamon with Streusel', img: 'images/apple-streusel.webp' },
+    { name: 'Pumpkin', img: 'images/pumpkin.webp' },
+    { name: 'Cookies and Cream', img: 'images/cookies-and-cream.webp' },
+    { name: 'Biscoff', img: 'images/biscoff.webp' }
+  ],
+
+  // Saved flavors for later weeks. Not shown on the site.
+  // To bring one back, copy it into `flavors` (or `pastAndFuture`) above.
+  // Photos for all of these are kept in the images/ folder.
+  flavorLibrary: [
+    {
       id: 'apple-streusel',
       name: 'Apple Cinnamon with Streusel',
       price: 4,
@@ -51,12 +85,8 @@ window.BAKERY = {
       ingredients: 'Everything in the original, plus Oreo cookies',
       allergens: 'Wheat, milk, eggs, soy',
       img: 'images/cookies-and-cream.webp'
-    }
-  ],
-
-  // "Past & future flavors" section on the homepage.
-  pastAndFuture: [
-    { name: 'Peach Cobbler', img: 'images/peach-cobbler.webp' },
+    },
+    { name: 'Biscoff', img: 'images/biscoff.webp' },
     { name: 'Pumpkin', img: 'images/pumpkin.webp' },
     { name: 'Banana Bread', img: 'images/banana-bread.webp' },
     { name: 'Tiramisu', img: 'images/tiramisu.webp' }
